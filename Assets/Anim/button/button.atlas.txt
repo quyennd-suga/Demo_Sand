@@ -1,0 +1,13 @@
+button.png
+size:308,308
+filter:Linear,Linear
+pma:true
+bt1
+bounds:1,157,177,150
+offsets:1,1,179,151
+green1
+bounds:1,1,155,126
+rotate:90
+green2
+bounds:179,154,153,124
+rotate:90

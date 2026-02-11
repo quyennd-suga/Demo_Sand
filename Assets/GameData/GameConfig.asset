@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17c97fe0a8c9d964cac6f3f53efe0729, type: 3}
+  m_Name: GameConfig
+  m_EditorClassIdentifier: 
+  maxHearts: 5
+  heartRegenTimeMinutes: 30
+  coinsPerLevel: 50
+  coinsPerStar: 10
+  heartsPerLevel: 1
+  starsForPerfect: 3
+  boosterConfigs:
+  - type: 0
+    name: 
+    description: 
+    coinCost: 0
+    startingAmount: 0
+    icon: {fileID: 0}
+  dailyRewards:
+  - day: 1
+    coins: 50
+    boosterType: 0
+    boosterAmount: 1
+  - day: 2
+    coins: 75
+    boosterType: 1
+    boosterAmount: 1
+  - day: 3
+    coins: 100
+    boosterType: 0
+    boosterAmount: 1
+  - day: 4
+    coins: 125
+    boosterType: 1
+    boosterAmount: 1
+  - day: 5
+    coins: 150
+    boosterType: 0
+    boosterAmount: 1
+  - day: 6
+    coins: 175
+    boosterType: 1
+    boosterAmount: 1
+  - day: 7
+    coins: 200
+    boosterType: 0
+    boosterAmount: 1
+  achievements: []

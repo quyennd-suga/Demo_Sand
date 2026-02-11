@@ -1,0 +1,25 @@
+xuat2.png
+size:808,808
+filter:Linear,Linear
+pma:true
+Group 1
+bounds:1,632,804,173
+offsets:1,2,807,176
+Text_Level failed
+bounds:1,458,804,173
+offsets:1,2,807,176
+d1
+bounds:1,448,366,9
+offsets:2,1,370,11
+d2
+bounds:1,448,366,9
+offsets:2,1,370,11
+fx1
+bounds:1,346,60,37
+offsets:1,1,62,39
+fx2
+bounds:79,405,34,42
+offsets:1,1,36,44
+fx3
+bounds:1,384,77,63
+offsets:1,1,79,65

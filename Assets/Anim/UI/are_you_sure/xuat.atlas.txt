@@ -1,0 +1,16 @@
+xuat.png
+size:748,748
+filter:Linear,Linear
+pma:true
+Text_title
+bounds:1,585,744,160
+offsets:3,2,749,163
+d1
+bounds:1,427,366,9
+offsets:3,2,372,13
+d2
+bounds:1,427,366,9
+offsets:3,2,372,13
+light
+bounds:1,437,737,147
+offsets:1,1,739,149

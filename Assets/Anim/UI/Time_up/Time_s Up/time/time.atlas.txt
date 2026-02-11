@@ -1,0 +1,16 @@
+time.png
+size:408,408
+filter:Linear,Linear
+pma:true
+clock_tomato
+bounds:1,12,347,395
+t1
+bounds:349,261,55,72
+t2
+bounds:349,203,56,57
+t3
+bounds:349,145,57,57
+offsets:1,1,59,59
+t4
+bounds:349,334,58,73
+offsets:1,1,60,75

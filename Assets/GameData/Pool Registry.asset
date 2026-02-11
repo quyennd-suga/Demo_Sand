@@ -1,0 +1,139 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3398b91d301c4a141ac5dce1c03ab0a4, type: 3}
+  m_Name: Pool Registry
+  m_EditorClassIdentifier: 
+  entries:
+  - id: 1
+    prefab: {fileID: 7048091698207963243, guid: e2ff77b23ae604847a1c970d0fe8886a,
+      type: 3}
+    mainType:
+      assemblyQualifiedName: BlockView, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    warmup: 10
+    initialCapacity: 10
+  - id: 2
+    prefab: {fileID: 910595442756878088, guid: b600f1bb3012f794d945170e31de2b76, type: 3}
+    mainType:
+      assemblyQualifiedName: BlockView, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    warmup: 5
+    initialCapacity: 5
+  - id: 3
+    prefab: {fileID: 3316795626794322158, guid: 5577d69decfc4b5469e47b508712e97f,
+      type: 3}
+    mainType:
+      assemblyQualifiedName: BlockView, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    warmup: 5
+    initialCapacity: 5
+  - id: 4
+    prefab: {fileID: 6842678866624908266, guid: f5646622efeead54895415298e38e414,
+      type: 3}
+    mainType:
+      assemblyQualifiedName: BlockView, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    warmup: 5
+    initialCapacity: 5
+  - id: 5
+    prefab: {fileID: 6976616334206165151, guid: 632aa247305c7544fae2581e28419030,
+      type: 3}
+    mainType:
+      assemblyQualifiedName: BlockView, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    warmup: 5
+    initialCapacity: 5
+  - id: 6
+    prefab: {fileID: 8551637769014771282, guid: 03ab2e121c7d40944ab58378a20d6a4b,
+      type: 3}
+    mainType:
+      assemblyQualifiedName: BlockView, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    warmup: 5
+    initialCapacity: 5
+  - id: 7
+    prefab: {fileID: 6602440933154703917, guid: 14362abc3e5a3164692eb68b9b2339d3,
+      type: 3}
+    mainType:
+      assemblyQualifiedName: BlockView, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    warmup: 5
+    initialCapacity: 5
+  - id: 8
+    prefab: {fileID: 8275195160926948525, guid: 949a0ef1af6eae44d88e4f709c28c17b,
+      type: 3}
+    mainType:
+      assemblyQualifiedName: BlockView, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    warmup: 5
+    initialCapacity: 5
+  - id: 13
+    prefab: {fileID: 7771731888499780434, guid: 155a0d28afb28fc4291be62d0a42b19c,
+      type: 3}
+    mainType:
+      assemblyQualifiedName: Fruit, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    warmup: 50
+    initialCapacity: 50
+  - id: 14
+    prefab: {fileID: 1207248231973809605, guid: bb3ae3837504aba46b805a18437aad37,
+      type: 3}
+    mainType:
+      assemblyQualifiedName: FruitMachine, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    warmup: 5
+    initialCapacity: 5
+  - id: 10
+    prefab: {fileID: 2713776448254802660, guid: 93223fe35f03092449f838a3347bd135,
+      type: 3}
+    mainType:
+      assemblyQualifiedName: PipeView, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    warmup: 8
+    initialCapacity: 8
+  - id: 15
+    prefab: {fileID: 5916338783287753344, guid: 87b728f94dbb32048b849b86191130ae,
+      type: 3}
+    mainType:
+      assemblyQualifiedName: BlockView, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    warmup: 5
+    initialCapacity: 5
+  - id: 9
+    prefab: {fileID: 6682993738920568223, guid: fe4a693dfaf7ac84da3041f157fcd049,
+      type: 3}
+    mainType:
+      assemblyQualifiedName: CellView, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    warmup: 64
+    initialCapacity: 64
+  - id: 16
+    prefab: {fileID: 1428213909457459147, guid: d668cc255f2df0147aa13d7f08a71eb5,
+      type: 3}
+    mainType:
+      assemblyQualifiedName: 
+    warmup: 20
+    initialCapacity: 20
+  - id: 17
+    prefab: {fileID: 5261923263046084433, guid: ada6823e90a1de84bb4b52aa98befcb9,
+      type: 3}
+    mainType:
+      assemblyQualifiedName: 
+    warmup: 4
+    initialCapacity: 4
+  - id: 18
+    prefab: {fileID: 2816746429004161503, guid: 9363a5983b52a5445845df16aa8d4447,
+      type: 3}
+    mainType:
+      assemblyQualifiedName: 
+    warmup: 4
+    initialCapacity: 4

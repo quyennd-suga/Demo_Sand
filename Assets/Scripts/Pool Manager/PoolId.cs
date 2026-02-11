@@ -1,0 +1,21 @@
+public enum PoolId : int
+{
+    Block_One = 1,
+    Block_Two = 2,
+    Block_Three = 3,
+    Block_Square = 4,
+    Block_ShortL = 5,
+    Block_LongL = 6,
+    Block_ShortT = 7,
+    Block_Plus = 8,
+    Cell = 9,
+    Pipe = 10,
+    StraightBorder = 11,
+    CornerBorder = 12,
+    Fruit = 13,
+    Machine = 14,
+    Block_ReverseL = 15,
+    Border_Straight = 16,
+    Inner_Corner = 17,
+    Outer_Corner = 18,
+}

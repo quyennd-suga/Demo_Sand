@@ -1,0 +1,10 @@
+text.png
+size:784,784
+filter:Linear,Linear
+pma:true
+text_title
+bounds:1,397,753,182
+offsets:1,1,755,183
+text_title copy 2
+bounds:1,580,780,201
+offsets:3,3,787,207

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 606b67f5bcb20ec4c96146cd22dc0518, type: 3}
+  m_Name: ItemData
+  m_EditorClassIdentifier: 
+  buttonOff: {fileID: 21300000, guid: 6d6421b65452acd48a2b0c81a5e7a868, type: 3}
+  buttonOn: []
+  items:
+  - type: 0
+    price: 0
+    titleImg: {fileID: 0}
+    smallIconSprite: {fileID: 21300000, guid: 96ca498b95454e443bd16a5886a0d3fb, type: 3}
+    bigIconSprite: {fileID: 21300000, guid: 96ca498b95454e443bd16a5886a0d3fb, type: 3}
+    notUnlockIcon: {fileID: 0}
+    description: 
+    unlockAmount: 3
+  unlockDatas:
+  - type: 0
+    levelUnlock: 5

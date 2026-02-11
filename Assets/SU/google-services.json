@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "666664648279",
+    "project_id": "tangle-rope-3d-untwist-knots",
+    "storage_bucket": "tangle-rope-3d-untwist-knots.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:666664648279:android:5d15a9802b022cb2edad12",
+        "android_client_info": {
+          "package_name": "com.sg.twisted.tangle3d.ropes.untie.untangle.knot"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnIU2uiS5QmVnwp_bClwxMAolNYuz-UZk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

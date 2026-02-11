@@ -1,0 +1,16 @@
+icon_video.png
+size:176,176
+filter:Linear,Linear
+pma:true
+body1
+bounds:1,3,90,83
+offsets:0,1,90,84
+glow1
+bounds:95,148,77,26
+offsets:0,0,77,27
+glow2
+bounds:1,87,93,87
+offsets:1,0,94,87
+line
+bounds:95,123,79,24
+offsets:0,0,79,25

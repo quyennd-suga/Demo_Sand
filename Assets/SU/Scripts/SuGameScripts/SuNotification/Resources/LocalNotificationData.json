@@ -1,0 +1,20 @@
+{
+   "Notifications":[
+      {
+         "title":"test title 1",
+         "mess":"test mess 1",
+         "HoursAdd":0,
+         "MinutesAdd":0,
+         "DaysAdd":0,
+         "SecsAdd":0
+      },
+      {
+         "title":"test title 2",
+         "mess":"test mess 2",
+         "HoursAdd":0,
+         "MinutesAdd":0,
+         "DaysAdd":0,
+         "SecsAdd":0
+      }
+   ]
+}
