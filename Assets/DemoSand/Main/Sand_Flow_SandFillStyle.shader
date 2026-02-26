@@ -16,7 +16,7 @@ Shader "Custom/Sand_Flow_SandFillStyle"
         _GrainSoftness ("Grain Edge Softness", Range(0.01, 0.3)) = 0.06
 
         // ==================== Flow Settings ====================
-        _FlowSpeed ("Flow Speed", Range(0, 5)) = 1.5
+        _FlowSpeed ("Flow Speed", Range(0, 10)) = 1.5
         _FlowDirection ("Flow Dir (XY)", Vector) = (0.15, -1.0, 0, 0)
 
         // ==================== Turbulence ====================
@@ -28,21 +28,6 @@ Shader "Custom/Sand_Flow_SandFillStyle"
         _Grain2Scale ("Layer2 Scale", Range(5, 80)) = 22.0
         _Grain2Speed ("Layer2 Speed", Range(0, 5)) = 1.0
         _Grain2Opacity ("Layer2 Opacity", Range(0, 1)) = 0.5
-
-        // ==================== Dust Layer ====================
-        _DustScale ("Dust Scale", Range(20, 150)) = 65.0
-        _DustSpeed ("Dust Speed", Range(0, 8)) = 3.0
-        _DustOpacity ("Dust Opacity", Range(0, 1)) = 0.3
-
-        // ==================== Smoke Texture ====================
-        _SmokeTex ("Smoke Texture", 2D) = "black" {}
-        _SmokeTiling ("Smoke Tiling", Range(0.1, 10)) = 2.0
-        _SmokeSpeed ("Smoke Scroll Speed", Range(0, 3)) = 0.8
-        _SmokeOpacity ("Smoke Opacity", Range(0, 1)) = 0.45
-        _SmokeColor ("Smoke Tint", Color) = (0.95, 0.85, 0.65, 1.0)
-        _SmokeTiling2 ("Smoke Layer2 Tiling", Range(0.1, 10)) = 3.5
-        _SmokeSpeed2 ("Smoke Layer2 Speed", Range(0, 3)) = 1.2
-        _SmokeDistort ("Smoke Turbulence Distort", Range(0, 0.5)) = 0.15
 
         // ==================== Surface ====================
         _TopBand ("Top Band Width", Range(0.001, 0.3)) = 0.07
@@ -87,18 +72,6 @@ Shader "Custom/Sand_Flow_SandFillStyle"
             float _Grain2Scale;
             float _Grain2Speed;
             float _Grain2Opacity;
-            float _DustScale;
-            float _DustSpeed;
-            float _DustOpacity;
-
-            sampler2D _SmokeTex;
-            float _SmokeTiling;
-            float _SmokeSpeed;
-            float _SmokeOpacity;
-            float4 _SmokeColor;
-            float _SmokeTiling2;
-            float _SmokeSpeed2;
-            float _SmokeDistort;
 
             float _TopBand;
             float _DepthDarken;
@@ -190,29 +163,22 @@ Shader "Custom/Sand_Flow_SandFillStyle"
 
                         float2 rnd = Hash22(cellID);
 
-                        // Per-grain flow: each grain has slight direction deviation
-                        float2 flowDir = normalize(_FlowDirection.xy + float2(0.001, 0.001));
-                        float angleDeviation = (rnd.x - 0.5) * 1.2; // ±0.6 rad deviation
-                        float cosA = cos(angleDeviation);
-                        float sinA = sin(angleDeviation);
-                        float2 grainFlowDir = float2(
-                            flowDir.x * cosA - flowDir.y * sinA,
-                            flowDir.x * sinA + flowDir.y * cosA
-                        );
+                        // Always flow strictly downward in world space
+                        float2 grainFlowDir = float2(0.0, -1.0);
 
-                        // Per-grain speed variation (0.5x ~ 1.5x)
-                        float speedVar = 0.5 + rnd.y;
+                        // Per-grain speed variation: wide spread (0.3x ~ 1.7x) for realistic particle feel
+                        float speedVar = 0.3 + rnd.y * 1.4;
 
-                        float2 flow = frac(rnd + _Time.y * speed * speedVar * grainFlowDir * 0.15);
+                        // High multiplier (0.55) for fast visible falling, like free-fall particles
+                        float2 flow = frac(rnd + _Time.y * speed * speedVar * grainFlowDir * 0.55);
 
-                        // Larger, more chaotic jitter
+                        // Minimal horizontal sway — keeps focus on downward fall
                         float timeOffset = rnd.x * 6.2831;
-                        flow += 0.12 * sin(_Time.y * (2.0 + rnd.y * 3.0) + timeOffset);
-                        flow += 0.06 * cos(_Time.y * (3.5 + rnd.x * 2.5) + timeOffset * 1.7);
+                        flow.x += 0.02 * sin(_Time.y * (1.0 + rnd.y * 1.5) + timeOffset);
                         flow = frac(flow);
 
                         float2 pt = neighbor + flow - fg;
-                        float dist = length(pt);
+                        float dist = max(abs(pt.x), abs(pt.y));
 
                         if (dist < minDist)
                         {
@@ -223,28 +189,6 @@ Shader "Custom/Sand_Flow_SandFillStyle"
                 }
 
                 return float2(minDist, cellBright);
-            }
-
-            // ---- Smoke sampling: 2 layers scrolling along flow direction ----
-            float SampleSmoke(float2 baseUV, float2 turbOffset)
-            {
-                float2 flowDir = normalize(_FlowDirection.xy + float2(0.001, 0.001));
-
-                // Layer 1
-                float2 smokeUV1 = baseUV * _SmokeTiling;
-                smokeUV1 += flowDir * _Time.y * _SmokeSpeed;
-                smokeUV1 += turbOffset * _SmokeDistort;
-                float s1 = tex2D(_SmokeTex, smokeUV1).r;
-
-                // Layer 2 — different scale, speed, offset
-                float2 smokeUV2 = baseUV * _SmokeTiling2;
-                smokeUV2 += flowDir * _Time.y * _SmokeSpeed2 * float2(0.8, 1.1);
-                smokeUV2 += turbOffset * _SmokeDistort * 1.3 + float2(0.37, 0.71);
-                float s2 = tex2D(_SmokeTex, smokeUV2).r;
-
-                // Blend: multiply for wispy look, then boost
-                float smoke = saturate(s1 * s2 * 2.5 + (s1 + s2) * 0.15);
-                return smoke;
             }
 
             v2f vert(appdata v)
@@ -292,23 +236,9 @@ Shader "Custom/Sand_Flow_SandFillStyle"
                                                  _GrainRadius * 0.7, v2.x);
                 float bright2 = v2.y;
 
-                // ===== Layer 3: micro dust =====
-                float2 turbDust = turb * 1.5;
-                float2 v3 = FlowingVoronoi(baseUV + float2(-2.1, 5.8),
-                                            _DustScale, _DustSpeed, turbDust);
-                float dust = 1.0 - smoothstep(_GrainRadius * 0.35 - _GrainSoftness * 0.5,
-                                               _GrainRadius * 0.35, v3.x);
-
                 // ===== Combine grain layers =====
-                float grainMask = saturate(grain1 + grain2 * _Grain2Opacity + dust * _DustOpacity);
+                float grainMask = saturate(grain1 + grain2 * _Grain2Opacity);
                 float grainBright = lerp(bright1, bright2, grain2 * _Grain2Opacity * 0.5);
-                grainBright = lerp(grainBright, v3.y, dust * _DustOpacity * 0.3);
-
-                // ===== Smoke =====
-                float smoke = SampleSmoke(baseUV, turb);
-                // Smoke is more visible in gaps between grains
-                float smokeVisibility = (1.0 - grainMask * 0.7) * _SmokeOpacity;
-                float smokeMask = smoke * smokeVisibility;
 
                 // ===== Color =====
                 float topBand = 1.0 - smoothstep(0.0, _TopBand, surfaceDist);
@@ -323,10 +253,6 @@ Shader "Custom/Sand_Flow_SandFillStyle"
                 float3 bgColor = _SideColor.rgb * 0.35 * depthFactor;
                 float3 col = lerp(bgColor, grainColor, grainMask);
 
-                // Blend smoke color into gaps
-                float3 smokeCol = _SmokeColor.rgb * depthFactor;
-                col = lerp(col, smokeCol, smokeMask);
-
                 // Top band blend
                 col = lerp(col, _TopColor.rgb, topBand * 0.8);
 
@@ -336,8 +262,6 @@ Shader "Custom/Sand_Flow_SandFillStyle"
 
                 // ===== Alpha =====
                 float grainAlpha = lerp(0.12, _SideColor.a, grainMask);
-                // Smoke adds alpha in gaps
-                grainAlpha = saturate(grainAlpha + smokeMask * 0.6);
                 float finalAlpha = lerp(grainAlpha, _TopColor.a, topBand);
                 finalAlpha *= fillAlpha * _BlendStrength;
 

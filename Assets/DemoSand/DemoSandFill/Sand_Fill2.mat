@@ -121,10 +121,10 @@ Material:
     - _VeinSpeed: 0
     - _VeinStrength: 0
     - _VeinTiling: 0.1
-    - _WaterLevelY: -0.18
+    - _WaterLevelY: 0.08
     - _WaveAmp: 0.014
     - _WaveFreq: 14.1
-    - _WaveSpeed: 4.79
+    - _WaveSpeed: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:

@@ -16,6 +16,7 @@ Shader "Sugame/URP/SandFill"
 
         [Header(Texture Mapping)]
         _TexTiling ("Texture Tiling (World Space)", Range(0.1, 20)) = 2.0
+        _SandScrollSpeed ("Sand Scroll Speed (Top-Down)", Range(0, 2)) = 0.15
 
         [Header(Visual)]
         _TopBand   ("Top Band Width (World Units)", Range(0.001, 0.25)) = 0.05
@@ -71,6 +72,7 @@ Shader "Sugame/URP/SandFill"
                 float  _SettleFreq;
                 float  _SettleSpeed;
                 float  _TexTiling;
+                float  _SandScrollSpeed;
                 float  _TopBand;
                 float  _TopBright;
                 float  _EdgeAA;
@@ -116,15 +118,17 @@ Shader "Sugame/URP/SandFill"
                 float3 anchoredWS = IN.positionWS - objWS;
                 float2 uv = anchoredWS.xy;
                 uv *= (_TexTiling * 0.1);
+                uv.y -= _Time.y * _SandScrollSpeed;
 
                 half4 texColor = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, uv);
                 half3 col = texColor.rgb * _Color.rgb;
                 col = lerp(col, col * _TopBright, topBand);
 
                 #ifdef _USEHEIGHTGRADIENT_ON
-                    float depthNorm = saturate(d * 0.5);
+                    float fillH = max(_WaterLevelY * 2.0, 0.01);
+                    float depthNorm = saturate(d / fillH);
                     float heightFactor = 1.0 - depthNorm;
-                    float gradient = lerp(0.85, 1.15, pow(heightFactor, _GradientPower));
+                    float gradient = lerp(0.85, 1.15, pow(max(heightFactor, 0.0001), max(_GradientPower, 0.0001)));
                     col *= gradient;
                 #endif
 

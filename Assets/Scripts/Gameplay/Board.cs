@@ -123,13 +123,13 @@ public class Board
                                 int taken = pipe.TakeFromTop(fillAmount);
                                 bool isInnerComplete = block.FillInnerBlock(taken);
                                 if (isInnerComplete) HandleBlockCompleted();
+                                PipeView pipeView = GameController.Instance.boardView.GetPipeView(pipeCell);
+                                float pourWorldX = pipeView != null ? pipeView.transform.position.x : 0f;
                                 BlockView blockView = GameController.Instance.boardView.GetBlockView(blockIndex);
                                 if (blockView != null)
                                 {
-                                    //float pourAmount = taken * 1f / block.capacityUnits;
-                                    blockView.PourInner(taken, isInnerComplete);
+                                    blockView.PourInner(taken, isInnerComplete, pourWorldX);
                                 }
-                                PipeView pipeView = GameController.Instance.boardView.GetPipeView(pipeCell);
                                 if (pipeView != null)
                                 {
                                     Vector2Int targetCell = GetCellTargetToPour(pipeCell, blockIndex);
@@ -155,13 +155,13 @@ public class Board
                             int taken = pipe.TakeFromTop(fillAmount);
                             bool isComplete = block.FillBlock(taken);
                             if (isComplete) HandleBlockCompleted();
+                            PipeView pipeView = GameController.Instance.boardView.GetPipeView(pipeCell);
+                            float pourWorldX = pipeView != null ? pipeView.transform.position.x : 0f;
                             BlockView blockView = GameController.Instance.boardView.GetBlockView(blockIndex);
                             if (blockView != null)
                             {
-                                //float pourAmount = taken * 1f / block.capacityUnits;
-                                blockView.Pour(taken, isComplete, block.data.color);
+                                blockView.Pour(taken, isComplete, block.data.color, pourWorldX);
                             }
-                            PipeView pipeView = GameController.Instance.boardView.GetPipeView(pipeCell);
                             if (pipeView != null)
                             {
                                 Vector2Int targetCell = GetCellTargetToPour(pipeCell, blockIndex);
@@ -187,13 +187,13 @@ public class Board
                                 int taken = pipe.TakeFromTop(fillAmount);
                                 bool isComplete = block.FillBlockColor(mixColor.color, taken);
                                 if (isComplete) HandleBlockCompleted();
+                                PipeView pipeView = GameController.Instance.boardView.GetPipeView(pipeCell);
+                                float pourWorldX = pipeView != null ? pipeView.transform.position.x : 0f;
                                 BlockView blockView = GameController.Instance.boardView.GetBlockView(blockIndex);
                                 if (blockView != null)
                                 {
-                                    //float pourAmount = taken * 1f / block.capacityUnits;
-                                    blockView.Pour(taken, isComplete, mixColor.color);
+                                    blockView.Pour(taken, isComplete, mixColor.color, pourWorldX);
                                 }
-                                PipeView pipeView = GameController.Instance.boardView.GetPipeView(pipeCell);
                                 if (pipeView != null)
                                 {
                                     Vector2Int targetCell = GetCellTargetToPour(pipeCell, blockIndex);

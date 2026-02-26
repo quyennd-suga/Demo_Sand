@@ -348,6 +348,10 @@ MonoBehaviour:
   targetRenderer: {fileID: 2279454223772332953}
   waterLevelProp: _WaterLevelY
   waterColorProp: _SideColor
+  waterSettleSpeed: _SettleSpeed
+  sandScrollSpeedProp: _SandScrollSpeed
+  surfaceGrainSpeedProp: _SurfaceGrainSpeed
+  sandParticle: {fileID: 0}
   useWorldBoundsForFill: 1
   levelOffset: 0
   speedMultiplier: 1
@@ -591,6 +595,10 @@ MonoBehaviour:
   targetRenderer: {fileID: 2904047833452588828}
   waterLevelProp: _WaterLevelY
   waterColorProp: _SideColor
+  waterSettleSpeed: _SettleSpeed
+  sandScrollSpeedProp: _SandScrollSpeed
+  surfaceGrainSpeedProp: _SurfaceGrainSpeed
+  sandParticle: {fileID: 0}
   useWorldBoundsForFill: 1
   levelOffset: 0
   speedMultiplier: 1
@@ -765,6 +773,10 @@ MonoBehaviour:
   targetRenderer: {fileID: 5418597573907409308}
   waterLevelProp: _WaterLevelY
   waterColorProp: _SideColor
+  waterSettleSpeed: _SettleSpeed
+  sandScrollSpeedProp: _SandScrollSpeed
+  surfaceGrainSpeedProp: _SurfaceGrainSpeed
+  sandParticle: {fileID: 0}
   useWorldBoundsForFill: 1
   levelOffset: 0
   speedMultiplier: 1
@@ -1045,7 +1057,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0f9d79d6528635b449cf4ca4d49051a0, type: 2}
+  - {fileID: 2100000, guid: 24e1536fbbb665745a35bee642d4bc8f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1081,7 +1093,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetRenderer: {fileID: 4886076603136343939}
   waterLevelProp: _WaterLevelY
-  waterColorProp: _SideColor
+  waterColorProp: _SandColor
+  waterSettleSpeed: _Turbulence
+  sandScrollSpeedProp: _SandScrollSpeed
+  surfaceGrainSpeedProp: _SurfaceGrainSpeed
+  sandParticle: {fileID: 0}
   useWorldBoundsForFill: 1
   levelOffset: 0
   speedMultiplier: 1

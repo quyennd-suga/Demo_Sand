@@ -102,51 +102,55 @@ Material:
     - _CenterDensity: 1.4
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
+    - _ColorVariation: 0.12
     - _Cull: 2
     - _Cutoff: 0.5
-    - _DepthDarken: 0.3
+    - _DepthDarken: 0
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DistortStrength: 0.035
     - _DstBlend: 0
     - _DstBlendAlpha: 0
-    - _DustOpacity: 0.3
+    - _DustOpacity: 1
     - _DustScale: 65
     - _DustSpeed: 3
     - _EdgeAA: 0.008
+    - _EdgeSoftness: 0.08
     - _EnvironmentReflections: 1
-    - _FillAmount: 1
-    - _FlowSpeed: 1.5
+    - _FillAmount: 0.98922986
+    - _FlowSpeed: 7.02
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Grain2Opacity: 0.5
-    - _Grain2Scale: 22
+    - _Grain2Opacity: 1
+    - _Grain2Scale: 5
     - _Grain2Speed: 1
     - _GrainBrightness: 3.5
     - _GrainFlowSpeed: 0.8
     - _GrainFlowSpeed2: 0.55
-    - _GrainRadius: 0.28
-    - _GrainScale: 35
-    - _GrainSoftness: 0.06
+    - _GrainRadius: 0.206
+    - _GrainScale: 5
+    - _GrainSoftness: 0.01
     - _GrainStrength: 0.95
     - _GrainThreshold: 0.35
     - _GrainTiling: 12
-    - _MaxValue: 1
+    - _MaxValue: 0.2821039
     - _Metallic: 0
-    - _MinValue: -1
+    - _MinValue: -0.2821039
     - _NoiseScrollSpeed: 0.25
     - _NoiseTiling: 2
     - _OcclusionStrength: 1
     - _Parallax: 0.005
+    - _ParticleDensity: 0.55
+    - _PixelSize: 0.04
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _SmokeDistort: 0.15
-    - _SmokeOpacity: 0.45
-    - _SmokeSpeed: 0.8
-    - _SmokeSpeed2: 1.2
-    - _SmokeTiling: 2
-    - _SmokeTiling2: 3.5
+    - _SmokeDistort: 0
+    - _SmokeOpacity: 0
+    - _SmokeSpeed: 0
+    - _SmokeSpeed2: 0
+    - _SmokeTiling: 0.1
+    - _SmokeTiling2: 0.1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _Sparkle: 0.15
@@ -154,10 +158,10 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
-    - _TopBand: 0.06
-    - _Turbulence: 0.6
-    - _TurbulenceScale: 3
-    - _TurbulenceSpeed: 1.8
+    - _TopBand: 0.001
+    - _Turbulence: 0
+    - _TurbulenceScale: 0.5
+    - _TurbulenceSpeed: 0
     - _WaveAmp: 0.012
     - _WaveFreq: 4
     - _WaveSpeed: 1.2
@@ -167,11 +171,12 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FlowDirection: {r: 0.15, g: -1, b: 0, a: 0}
-    - _SideColor: {r: 0.92, g: 0.78, b: 0.54999995, a: 0.85}
-    - _SmokeColor: {r: 0.95, g: 0.85, b: 0.65, a: 1}
+    - _FlowDirection: {r: 0, g: -1, b: 0, a: 0}
+    - _SandColor: {r: 0.9, g: 0.8, b: 0.39999998, a: 1}
+    - _SideColor: {r: 0.8463644, g: 0.36320752, b: 1, a: 1}
+    - _SmokeColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _TopColor: {r: 1, g: 0.92, b: 0.72, a: 1}
+    - _TopColor: {r: 1, g: 0.47216976, b: 1, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &2243915418126925108
 MonoBehaviour:

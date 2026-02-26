@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Custom_SandEffect2
+  m_Shader: {fileID: 4800000, guid: 0354bb40eaddfcb40b44b1145a260597, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BottomDarkness: 0
+    - _DarknessDepth: 0
+    - _FillAmount: 0.559
+    - _FillVelocity: 1
+    - _FlowSpread: 1
+    - _GrainStrength: 0.5
+    - _MaxY: 1
+    - _MinY: 0
+    - _NoiseScale: 20
+    - _NoiseStrength: 0.2
+    - _ObjectHeight: 1
+    - _PeakHeight: 0.2
+    - _PeakSharpness: 1
+    - _PeakX: 0.5
+    - _SettleAmp: 0.05
+    - _SettleFreq: 0.9
+    - _SettleSpeed: 1.89
+    - _SurfaceBandHeight: 0.5
+    - _SurfaceGrainBright: 2
+    - _SurfaceGrainOpacity: 0.2
+    - _SurfaceGrainRadius: 0.336
+    - _SurfaceGrainScale: 10.6
+    - _SurfaceGrainSoftness: 0.01
+    - _SurfaceGrainSpeed: 5
+    - _Turbulence: 0
+    - _WaterLevelY: 0.45
+    - _Wave2FreqMult: 1.26
+    - _Wave2Weight: 0.186
+    - _Wave3Enable: 0.049
+    - _Wave3FreqMult: 6.31
+    - _Wave3Weight: 0.569
+    - _WaveAmplitude: 0.271
+    - _WaveFrequency: 9.04
+    - _WavePhaseSpeed: 0.54
+    - _WaveSpeed: 0
+    - _WorldMaxY: 1
+    - _WorldMinY: 0
+    m_Colors:
+    - _SandColor: {r: 1, g: 0.3537736, b: 0.3537736, a: 1}
+  m_BuildTextureStacks: []

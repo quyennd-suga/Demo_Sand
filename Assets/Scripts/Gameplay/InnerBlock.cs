@@ -30,9 +30,9 @@ public class InnerBlock : MonoBehaviour
         fillWater.SetWaterColor(color, blockIndex, duration, colorIndex, true);
     }
 
-    public void PourInner(float pourAmount, bool isComplete)
+    public void PourInner(float pourAmount, bool isComplete, float pourWorldX)
     {
-        fillWater.SetFillAmount(pourAmount, isComplete);
+        fillWater.SetFillAmount(pourAmount, isComplete, pourWorldX);
     }
 
     public void BlockComplete()

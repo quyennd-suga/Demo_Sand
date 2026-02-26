@@ -9,6 +9,8 @@ public class FillWaterController : MonoBehaviour
     [SerializeField] private string waterLevelProp = "_WaterLevelY";
     [SerializeField] private string waterColorProp = "_SideColor";
     [SerializeField] private string waterSettleSpeed = "_SettleSpeed";
+    [SerializeField] private string sandScrollSpeedProp = "_SandScrollSpeed";
+    [SerializeField] private string surfaceGrainSpeedProp = "_SurfaceGrainSpeed";
     
     [Header("Particle Effect")]
     [SerializeField] private ParticleSystem sandParticle;
@@ -41,9 +43,21 @@ public class FillWaterController : MonoBehaviour
     private int waterLevelId;
     private int waterColorId;
     private int waterSettleSpeedId;
+    private int sandScrollSpeedId;
+    private int surfaceGrainSpeedId;
+    private int boundsMinXId;
+    private int boundsMaxXId;
+    private int peakXId;
+    private int peakHeightId;
     private bool markersReady;
 
+    private float currentPeakHeight;
+    private float defaultPeakHeight = -1f;
+
+    private float pourWorldX;
+
     private Coroutine fillRoutine;
+    private Coroutine grainSpeedResetRoutine;
 
     private Color waterColorValue;
 
@@ -67,6 +81,11 @@ public class FillWaterController : MonoBehaviour
     public void ResetWater()
     {
         StopFillRoutine();
+        if (grainSpeedResetRoutine != null)
+        {
+            StopCoroutine(grainSpeedResetRoutine);
+            grainSpeedResetRoutine = null;
+        }
         HideParticle();
         currentFill = targetFill = 0f;
         gameObject.SetActive(false);
@@ -80,6 +99,18 @@ public class FillWaterController : MonoBehaviour
         waterLevelId = Shader.PropertyToID(waterLevelProp);
         waterColorId = Shader.PropertyToID(waterColorProp);
         waterSettleSpeedId = Shader.PropertyToID(waterSettleSpeed);
+        sandScrollSpeedId = Shader.PropertyToID(sandScrollSpeedProp);
+        surfaceGrainSpeedId = Shader.PropertyToID(surfaceGrainSpeedProp);
+        boundsMinXId = Shader.PropertyToID("_BoundsMinX");
+        boundsMaxXId = Shader.PropertyToID("_BoundsMaxX");
+        peakXId = Shader.PropertyToID("_PeakX");
+        peakHeightId = Shader.PropertyToID("_PeakHeight");
+
+        if (defaultPeakHeight < 0f && targetRenderer != null && targetRenderer.sharedMaterial != null)
+        {
+            defaultPeakHeight = targetRenderer.sharedMaterial.GetFloat(peakHeightId);
+            currentPeakHeight = defaultPeakHeight;
+        }
     }
 
     public void SetWaterColor(Color color, int blIndex, float duration, int _colorIndex, bool isInner = false)
@@ -104,9 +135,11 @@ public class FillWaterController : MonoBehaviour
     /// <summary>
     /// Tăng thêm fill (additive). newFill01 là phần tăng thêm (0..1).
     /// </summary>
-    public void SetFillAmount(float newFill01, bool isComplete)
+    public void SetFillAmount(float newFill01, bool isComplete, float pourX)
     {
         if (!gameObject.activeSelf) gameObject.SetActive(true);
+
+        pourWorldX = pourX;
 
         float prevTarget = targetFill;
         targetFill = Mathf.Clamp01(targetFill + newFill01);
@@ -147,9 +180,21 @@ public class FillWaterController : MonoBehaviour
     /// </summary>
     private IEnumerator FillToTarget_TimeBased(bool isComplete, float prevTarget)
     {
+        if (grainSpeedResetRoutine != null)
+        {
+            StopCoroutine(grainSpeedResetRoutine);
+            grainSpeedResetRoutine = null;
+        }
+
         float start = currentFill;
         float end = targetFill;
-        mpb.SetFloat(waterSettleSpeedId, 3f);
+
+        currentPeakHeight = defaultPeakHeight >= 0f ? defaultPeakHeight : 0.2f;
+
+        mpb.SetFloat(waterSettleSpeedId, 15f);
+        mpb.SetFloat(sandScrollSpeedId, 2f);
+        mpb.SetFloat(surfaceGrainSpeedId, 5f);
+        mpb.SetFloat(peakHeightId, currentPeakHeight);
         targetRenderer.SetPropertyBlock(mpb);
         Debug.Log("=================================="+ mpb.GetFloat(waterSettleSpeedId));
         // delta cần chạy (ưu tiên dựa trên target mới - current hiện tại)
@@ -162,8 +207,11 @@ public class FillWaterController : MonoBehaviour
             ApplyFill(currentFill);
             fillRoutine = null;
             mpb.SetFloat(waterSettleSpeedId, 0f);
+            mpb.SetFloat(sandScrollSpeedId, 0f);
             targetRenderer.SetPropertyBlock(mpb);
             Debug.Log("=================================="+ mpb.GetFloat(waterSettleSpeedId));
+            // Grain speed: delay 1s rồi mới tắt
+            RestartGrainSpeedReset();
             NotifyComplete(isComplete);
             yield break;
         }
@@ -185,14 +233,58 @@ public class FillWaterController : MonoBehaviour
         }
 
         mpb.SetFloat(waterSettleSpeedId, 0f);
+        mpb.SetFloat(sandScrollSpeedId, 0f);
         Debug.Log("=================================="+ mpb.GetFloat(waterSettleSpeedId));
         targetRenderer.SetPropertyBlock(mpb);
+        // Grain speed: delay 1s rồi mới tắt
+        RestartGrainSpeedReset();
 
         currentFill = end;
         ApplyFill(currentFill);
 
         fillRoutine = null;
         NotifyComplete(isComplete);
+    }
+
+    private void RestartGrainSpeedReset()
+    {
+        if (grainSpeedResetRoutine != null)
+            StopCoroutine(grainSpeedResetRoutine);
+        grainSpeedResetRoutine = StartCoroutine(DelayResetGrainSpeed(1.25f));
+    }
+
+    private IEnumerator DelayResetGrainSpeed(float delay)
+    {
+        // Animate _PeakHeight from current value down to a small unevenness over the delay duration
+        float startHeight = currentPeakHeight;
+        float basePeak = defaultPeakHeight >= 0f ? defaultPeakHeight : 0.2f;
+        float targetHeight = basePeak * 0.25f; // Giữ lại 25% độ cao đỉnh để tạo sự mấp mô nhẹ
+        float elapsed = 0f;
+
+        while (elapsed < delay)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / delay);
+            // Ease-out: cát san nhanh lúc đầu, chậm dần cuối
+            float eased = 1f - (1f - t) * (1f - t);
+            currentPeakHeight = Mathf.Lerp(startHeight, targetHeight, eased);
+
+            EnsureMPB();
+            targetRenderer.GetPropertyBlock(mpb);
+            mpb.SetFloat(peakHeightId, currentPeakHeight);
+            targetRenderer.SetPropertyBlock(mpb);
+
+            yield return null;
+        }
+
+        // Kết thúc: reset hẳn grain speed và chốt lại độ mấp mô còn lại
+        currentPeakHeight = targetHeight;
+        EnsureMPB();
+        targetRenderer.GetPropertyBlock(mpb);
+        mpb.SetFloat(surfaceGrainSpeedId, 0f);
+        mpb.SetFloat(peakHeightId, targetHeight);
+        targetRenderer.SetPropertyBlock(mpb);
+        grainSpeedResetRoutine = null;
     }
 
     private void NotifyComplete(bool isComplete)
@@ -216,8 +308,15 @@ public class FillWaterController : MonoBehaviour
         float objY = transform.position.y;
         float waterLevelFromPivot = surfaceWorldY - objY;
 
+        // Calculate _PeakX from pour position
+        float rangeX = b.max.x - b.min.x;
+        float peakX = rangeX > 0.001f ? Mathf.Clamp01((pourWorldX - b.min.x) / rangeX) : 0.5f;
+
         targetRenderer.GetPropertyBlock(mpb);
         mpb.SetFloat(waterLevelId, waterLevelFromPivot);
+        mpb.SetFloat(boundsMinXId, b.min.x);
+        mpb.SetFloat(boundsMaxXId, b.max.x);
+        mpb.SetFloat(peakXId, peakX);
         targetRenderer.SetPropertyBlock(mpb);
         
         UpdateParticlePosition(surfaceWorldY);
@@ -252,7 +351,16 @@ public class FillWaterController : MonoBehaviour
     {
         if (sandParticle == null) return;
         
+        // Set màu cho particle chính
         var main = sandParticle.main;
         main.startColor = color;
+        
+        // Set màu cho tất cả particle con
+        ParticleSystem[] childParticles = sandParticle.GetComponentsInChildren<ParticleSystem>(true);
+        foreach (var ps in childParticles)
+        {
+            var childMain = ps.main;
+            childMain.startColor = color;
+        }
     }
 }
