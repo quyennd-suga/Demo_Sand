@@ -348,7 +348,7 @@ MonoBehaviour:
   targetRenderer: {fileID: 2279454223772332953}
   waterLevelProp: _WaterLevelY
   waterColorProp: _SideColor
-  waterSettleSpeed: _SettleSpeed
+  turbulence: _Turbulence
   sandScrollSpeedProp: _SandScrollSpeed
   surfaceGrainSpeedProp: _SurfaceGrainSpeed
   sandParticle: {fileID: 0}
@@ -595,7 +595,7 @@ MonoBehaviour:
   targetRenderer: {fileID: 2904047833452588828}
   waterLevelProp: _WaterLevelY
   waterColorProp: _SideColor
-  waterSettleSpeed: _SettleSpeed
+  turbulence: _Turbulence
   sandScrollSpeedProp: _SandScrollSpeed
   surfaceGrainSpeedProp: _SurfaceGrainSpeed
   sandParticle: {fileID: 0}
@@ -773,7 +773,7 @@ MonoBehaviour:
   targetRenderer: {fileID: 5418597573907409308}
   waterLevelProp: _WaterLevelY
   waterColorProp: _SideColor
-  waterSettleSpeed: _SettleSpeed
+  turbulence: _Turbulence
   sandScrollSpeedProp: _SandScrollSpeed
   surfaceGrainSpeedProp: _SurfaceGrainSpeed
   sandParticle: {fileID: 0}
@@ -1023,7 +1023,7 @@ Transform:
   m_GameObject: {fileID: 5666052539573342009}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.3}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1094,7 +1094,7 @@ MonoBehaviour:
   targetRenderer: {fileID: 4886076603136343939}
   waterLevelProp: _WaterLevelY
   waterColorProp: _SandColor
-  waterSettleSpeed: _Turbulence
+  turbulence: _Turbulence
   sandScrollSpeedProp: _SandScrollSpeed
   surfaceGrainSpeedProp: _SurfaceGrainSpeed
   sandParticle: {fileID: 0}
@@ -1392,7 +1392,7 @@ Transform:
   m_GameObject: {fileID: 8196477298701556737}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -21,20 +21,20 @@ public class WaterController : MonoBehaviour
         waterMask.SetActive(false);
     }
 
-    public void SetFillAmount(float amount, bool isComplete, float pourWorldX)
+    public void SetFillAmount(float amount, bool isComplete, Vector3 pourWorldPos)
     {
         waterMask.SetActive(true);
-        fillWater.SetFillAmount(amount, isComplete, pourWorldX);
+        fillWater.SetFillAmount(amount, isComplete, pourWorldPos);
     }
 
-    public void SetMixFillAmount(float amount, int color, bool isComplete, float pourWorldX)
+    public void SetMixFillAmount(float amount, int color, bool isComplete, Vector3 pourWorldPos)
     {
         waterMask.SetActive(true);
         foreach (var fill in mixFillWater)
         {
             if (fill.waterColor == color)
             {
-                fill.SetFillAmount(amount, isComplete, pourWorldX);
+                fill.SetFillAmount(amount, isComplete, pourWorldPos);
                 break;
             }
         }

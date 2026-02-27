@@ -124,11 +124,11 @@ public class Board
                                 bool isInnerComplete = block.FillInnerBlock(taken);
                                 if (isInnerComplete) HandleBlockCompleted();
                                 PipeView pipeView = GameController.Instance.boardView.GetPipeView(pipeCell);
-                                float pourWorldX = pipeView != null ? pipeView.transform.position.x : 0f;
+                                Vector3 pourWorldPos = pipeView != null ? pipeView.transform.position : Vector3.zero;
                                 BlockView blockView = GameController.Instance.boardView.GetBlockView(blockIndex);
                                 if (blockView != null)
                                 {
-                                    blockView.PourInner(taken, isInnerComplete, pourWorldX);
+                                    blockView.PourInner(taken, isInnerComplete, pourWorldPos);
                                 }
                                 if (pipeView != null)
                                 {
@@ -156,11 +156,11 @@ public class Board
                             bool isComplete = block.FillBlock(taken);
                             if (isComplete) HandleBlockCompleted();
                             PipeView pipeView = GameController.Instance.boardView.GetPipeView(pipeCell);
-                            float pourWorldX = pipeView != null ? pipeView.transform.position.x : 0f;
+                            Vector3 pourWorldPos = pipeView != null ? pipeView.transform.position : Vector3.zero;
                             BlockView blockView = GameController.Instance.boardView.GetBlockView(blockIndex);
                             if (blockView != null)
                             {
-                                blockView.Pour(taken, isComplete, block.data.color, pourWorldX);
+                                blockView.Pour(taken, isComplete, block.data.color, pourWorldPos);
                             }
                             if (pipeView != null)
                             {
@@ -188,11 +188,11 @@ public class Board
                                 bool isComplete = block.FillBlockColor(mixColor.color, taken);
                                 if (isComplete) HandleBlockCompleted();
                                 PipeView pipeView = GameController.Instance.boardView.GetPipeView(pipeCell);
-                                float pourWorldX = pipeView != null ? pipeView.transform.position.x : 0f;
+                                Vector3 pourWorldPos = pipeView != null ? pipeView.transform.position : Vector3.zero;
                                 BlockView blockView = GameController.Instance.boardView.GetBlockView(blockIndex);
                                 if (blockView != null)
                                 {
-                                    blockView.Pour(taken, isComplete, mixColor.color, pourWorldX);
+                                    blockView.Pour(taken, isComplete, mixColor.color, pourWorldPos);
                                 }
                                 if (pipeView != null)
                                 {

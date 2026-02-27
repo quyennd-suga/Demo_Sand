@@ -30,12 +30,20 @@ Material:
     m_Ints: []
     m_Floats:
     - _BottomDarkness: 0
+    - _BoundsMaxX: 0.5
+    - _BoundsMinX: -0.5
     - _DarknessDepth: 0
     - _FillAmount: 0.559
+    - _FillDirX: 0
+    - _FillDirY: 1
+    - _FillPosX: 0
+    - _FillPosY: 0.5
     - _FillVelocity: 1
     - _FlowSpread: 1
     - _GrainStrength: 0.5
     - _MaxY: 1
+    - _MeshLocalMaxX: 0.5
+    - _MeshLocalMinX: -0.5
     - _MinY: 0
     - _NoiseScale: 20
     - _NoiseStrength: 0.2
@@ -43,18 +51,19 @@ Material:
     - _PeakHeight: 0.2
     - _PeakSharpness: 1
     - _PeakX: 0.5
+    - _SandScrollSpeed: 5
     - _SettleAmp: 0.05
     - _SettleFreq: 0.9
     - _SettleSpeed: 1.89
     - _SurfaceBandHeight: 0.5
     - _SurfaceGrainBright: 2
-    - _SurfaceGrainOpacity: 0.2
+    - _SurfaceGrainOpacity: 1
     - _SurfaceGrainRadius: 0.336
     - _SurfaceGrainScale: 10.6
     - _SurfaceGrainSoftness: 0.01
-    - _SurfaceGrainSpeed: 5
+    - _SurfaceGrainSpeed: 1.44
     - _Turbulence: 0
-    - _WaterLevelY: 0.45
+    - _WaterLevelY: 1.3
     - _Wave2FreqMult: 1.26
     - _Wave2Weight: 0.186
     - _Wave3Enable: 0.049

@@ -208,26 +208,26 @@ public class BlockView : MonoBehaviour
 
 
 
-    public void Pour(float taken, bool isComplete, int color, float pourWorldX)
+    public void Pour(float taken, bool isComplete, int color, Vector3 pourWorldPos)
     {
         pouring = true;
         
         if(block.data.isMixColor)
         {
             float pourAmount = taken * 1f / block.capacitiesPerColor[color].capacityUnits;
-            fillWater.SetMixFillAmount(pourAmount, color, isComplete, pourWorldX);
+            fillWater.SetMixFillAmount(pourAmount, color, isComplete, pourWorldPos);
         }
         else
         {
             float pourAmount = taken * 1f / block.capacityUnits;
-            fillWater.SetFillAmount(pourAmount, isComplete, pourWorldX);
+            fillWater.SetFillAmount(pourAmount, isComplete, pourWorldPos);
         }    
     }    
-    public void PourInner(float taken, bool isComplete, float pourWorldX)
+    public void PourInner(float taken, bool isComplete, Vector3 pourWorldPos)
     {
         pouring = true;
         float pourAmount = taken * 1f / block.innerCapacityUnits;
-        innerBlock.PourInner(pourAmount, isComplete, pourWorldX);
+        innerBlock.PourInner(pourAmount, isComplete, pourWorldPos);
     }
 
 

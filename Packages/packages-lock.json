@@ -202,15 +202,6 @@
         "com.unity.2d.aseprite": "1.1.9"
       }
     },
-    "com.unity.ide.antigravity": {
-      "version": "https://github.com/tndh/com.unity.ide.antigravity.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {
-        "com.unity.test-framework": "1.1.9"
-      },
-      "hash": "415842cc8912f9a4e42ab5e8cbfdff7cefbd657f"
-    },
     "com.unity.ide.rider": {
       "version": "3.0.36",
       "depth": 0,
