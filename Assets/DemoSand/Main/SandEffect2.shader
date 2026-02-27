@@ -34,6 +34,11 @@ Shader "Custom/SandEffect2"
         _SurfaceGrainOpacity ("Surface Grain Opacity", Range(0, 1)) = 0.9
         _SurfaceGrainBright ("Surface Grain Brightness", Range(0.5, 2.0)) = 1.3
 
+        // ==================== Scroll (for pipe fruit sprites) ====================
+        _ScrollSpeed ("Scroll Speed", Float) = 0.0
+        _ScrollDirX ("Scroll Direction X", Float) = 0.0
+        _ScrollDirY ("Scroll Direction Y", Float) = 0.0
+
         // ==================== Depth Darkening ====================
         _BottomDarkness ("Bottom Darkness", Range(0, 1)) = 0.4
         _DarknessDepth  ("Darkness Depth Range", Float) = 0.5
@@ -99,6 +104,10 @@ Shader "Custom/SandEffect2"
             float _SurfaceGrainSpeed;
             float _SurfaceGrainOpacity;
             float _SurfaceGrainBright;
+
+            float _ScrollSpeed;
+            float _ScrollDirX;
+            float _ScrollDirY;
 
             float _BottomDarkness;
             float _DarknessDepth;
@@ -225,6 +234,9 @@ Shader "Custom/SandEffect2"
                 float3 objWS = float3(unity_ObjectToWorld._m03, unity_ObjectToWorld._m13, unity_ObjectToWorld._m23);
                 float3 anchoredWS = i.worldPos - objWS;
                 float2 grainUV = anchoredWS.xy;
+
+                // ── SCROLL (cho fruit sprites trong pipe) ──
+                grainUV += float2(_ScrollDirX, _ScrollDirY) * _ScrollSpeed * _Time.y;
 
                 // ── FILL ENTRY POINT ──
                 float2 fillPos = float2(_FillPosX, _FillPosY);

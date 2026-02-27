@@ -9,6 +9,7 @@ public class PipeView : MonoBehaviour
     [SerializeField] private float pipeOffset = 0.85f;
     [SerializeField] private float posOffset = 7.5f;
 
+
     private readonly Queue<Fruit> spawnedFruits = new Queue<Fruit>();
 
     private Vector2Int pipePos;
@@ -64,11 +65,8 @@ public class PipeView : MonoBehaviour
         {
             
             WaterColor waterColor = pipe.data.waterColors[i];
-            Sprite sprite = DataContainer.Instance.fruitData.GetFruitSprite((ColorEnum)waterColor.color);
             if (i == 0)
             {
-
-
                 Color color = DataContainer.Instance.blockColorData.GetColor((ColorEnum)waterColor.color);
                 machine.SetColor(color);
                 machine.Config(direction);
@@ -81,7 +79,7 @@ public class PipeView : MonoBehaviour
                 index++;
 
                 Fruit fruit = pool.Spawn<Fruit>(PoolId.Fruit, parent);
-                fruit.ConfigFruit(sprite, waterColor.color);
+                fruit.ConfigFruit(waterColor.color, direction);
 
                 // IMPORTANT: dùng localPosition vì parent != null
                 fruit.transform.localPosition = startLocal + step * index;

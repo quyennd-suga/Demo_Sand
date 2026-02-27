@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pourOrigin: {fileID: 8439709842474732183}
-  pipeOffset: 0.85
+  pipeOffset: 0.6
   posOffset: 7.5
   clearAllChildrenOnSetData: 0
   machine: {fileID: 0}
